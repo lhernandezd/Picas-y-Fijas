@@ -14,6 +14,10 @@ header #new-number {
   text-align: center;
 }
 
+.error {
+  color:red;
+}
+
 section {
   width: 25%;
   margin: 30px auto;
@@ -27,4 +31,30 @@ table {
 table, th, td {
   border: 1px solid #d7d5da;
   padding: 10px 15px;
+}
+
+.result {
+  display: none;
+  position: absolute;
+  top: 35%;
+  width: 100%;
+}
+
+.result span {
+  font-size: 4em;
+  font-weight: bold; 
+  color: white;
+}
+
+.result .close {
+  margin-top: 70px;
+}
+
+.result .close a {
+  color: white;
+  font-size: 2em;
+  text-decoration: none;
+  background-color: #f04500;
+  padding: 10px 15px;
+  border-radius: 8px
 }
