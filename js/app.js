@@ -44,42 +44,41 @@ function createElements(items,n) {
   $(row).append(`<td>${n}</td><td>${items[1]}</td><td>${items[0]}</td>`);
 }
 
-function game() {
-  randomNumber();
-  $('#new-number').keyup(function(event) {
-    let $fvalue = $(this).val()
-    let $value = $fvalue.split('');
-    let uniqueNum = checkUnique($value);
+function restart() {
+  $('#again').click(function(event) {
+    event.stopPropagation();
+    $('#new-number').val('');
+    $('body').css('background','#f5f5f2')
+    $('.result').hide();
+    number = '';
+    score = '';
+    numbers = Array.from(Array(10).keys());
+    $('tbody').html('');
+    randomNumber();
+  })
+}
 
-    if (event.which == 13) {
-      $('#new-number').val('');
-      if ($value.length > 4 || !uniqueNum || $value.length == 0) {
-        $('span').addClass('error');
-      } else {
-        $('span').removeClass('error');
-        score = points($value).split(',');
-        createElements(score,$fvalue);
-        if (score[0] == '4') {
-          $('section,header').hide();
-          $('body').css('background','#8c8c8c')
-          $('.result').show();
-          $('#new-number').val('');
-        }
+// Game Start
+randomNumber();
+$('#new-number').keyup(function(event) {
+  let $fvalue = $(this).val();
+  let $value = $fvalue.split('');
+  let uniqueNum = checkUnique($value);
+
+  if (event.which == 13) {
+    $('#new-number').val('');
+
+    if ($value.length !== 4 || !(uniqueNum)) {
+      $('#alert').addClass('error animated flash');
+    } else {
+      $('#alert').removeClass('error animated flash');
+      score = points($value).split(',');
+      createElements(score,$fvalue);
+      if (score[0] == '4') {
+        $('body').css('background','linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ),#f5f5f2')
+        $('.result').show();
+        restart();
       }
     }
-  })
-};
-
-//Start
-game();
-
-$('#again').click(function(event) {
-  $('body').css('background','#f5f5f2')
-  $('section, header').show();
-  $('.result').hide();
-  number = '';
-  score = '';
-  numbers = Array.from(Array(10).keys());
-  $('tbody').html('');
-  game();
-})
+  }
+});

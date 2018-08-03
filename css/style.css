@@ -4,7 +4,7 @@
 body {
   font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
   text-align: center;
-  background-color: #f5f5f2;
+  background: #f5f5f2;
 }
 
 header #new-number {
@@ -50,7 +50,7 @@ table, th, td {
   margin-top: 70px;
 }
 
-.result .close a {
+.result .close #again {
   color: white;
   font-size: 2em;
   text-decoration: none;
